@@ -1,15 +1,24 @@
+from django.core import paginator
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 from django.utils import timezone
+from django.core.paginator import Paginator
 from .models import Question, Answer
 from .forms import AnswerForm, QuestionForm
 
 # Create your views here.
 def index(request):
-    # 목록 출력
+    """ 목록 출력 """
+    # 입력 파라미터, localhost:8000/pybo/?page=1
+    page = request.GET.get('page', '1') # 페이지
+    # 조회
     question_list = Question.objects.order_by('-create_date')   # 작성일시의 역순 정렬
-    context = {'question_list' : question_list}
-    
+    # 페이징처리
+    paginator = Paginator(question_list, 10) # 페이지당 10개 씩
+    page_obj = paginator.get_page(page)
+    last_page = paginator.num_pages
+
+    context = {'question_list' : page_obj, 'last_page' : last_page}
     return render(request, 'pybo/question_list.html', context)  # 템플릿
 
 def detail(request, question_id):

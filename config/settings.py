@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pybo.apps.PyboConfig', # 이 클래스는 APP/apps.py 파일 참고
+    'common.apps.CommonConfig', # 공통 앱
 ]
 
 MIDDLEWARE = [
@@ -141,6 +142,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+# 로그인, 로그아웃 성공 후 이동하는 URL
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url

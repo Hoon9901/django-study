@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load pybo_filter %}
 {% block content %}
 <h1 class="my-3">
     <center>질문</center>
@@ -18,10 +19,19 @@
             {% if question_list %}
             {% for question in question_list %}
             <tr>
-                <td>{{ forloop.counter}}</td>
+                <!-- 일련번호 전체 게시물 개수 - 시작인덱스 - 현재인덱스 + 1 -->
+                <td>
+                    {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1}}
+                </td>
+                <!-- 제목 -->
                 <td>
                     <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+                    <!-- 답변 개수 -->
+                    {% if question.answer_set.count > 0 %}
+                        <span class = "text-danger small ml-2">{{ question.answer_set.count }}</span>
+                    {% endif %}
                 </td>
+                <!-- 작성일시 -->
                 <td>{{ question.create_date}}</td>
             </tr>
             {% endfor %}

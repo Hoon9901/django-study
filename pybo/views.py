@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 from .models import Question, Answer
 from .forms import AnswerForm, QuestionForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -28,13 +29,16 @@ def detail(request, question_id):
     context = {'question' : question}
     return render(request, 'pybo/question_detail.html', context)
 
+@login_required(login_url='common:login')
 def answer_create(request, question_id) :
+    # 답변 등록
     question = get_object_or_404(Question, pk=question_id)
 
     if request.method == 'POST':
         form = AnswerForm(request.POST)
         if form.is_valid() :
             answer = form.save(commit=False)
+            answer.author = request.user # 로그인한 계정(user)
             answer.create_date = timezone.now()
             answer.question = question
             answer.save()
@@ -44,12 +48,15 @@ def answer_create(request, question_id) :
     context = {'question' : question, 'form' : form}
     return render(request, 'pybo/question_detail.html', context)
 
+@login_required(login_url='common:login')
 def question_create(request) : 
+    # 질문 등록
     if request.method == 'POST':    # 질문 저장
         form = QuestionForm(request.POST)
         if form.is_valid():
             # 폼이 작성되있으면 작성된걸로 DB 저장
             question = form.save(commit=False)  # commit ->False (임시저장) why -> creaet_date 작성안되어있어서 오류 발생
+            question.author = request.user
             question.create_date = timezone.now()
             question.save()
             return redirect('pybo:index')   # 질문 화면으로 이동

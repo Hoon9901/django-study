@@ -33,7 +33,6 @@ def detail(request, question_id):
 def answer_create(request, question_id) :
     # 답변 등록
     question = get_object_or_404(Question, pk=question_id)
-
     if request.method == 'POST':
         form = AnswerForm(request.POST)
         if form.is_valid() :

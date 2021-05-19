@@ -8,6 +8,7 @@ class Question(models.Model):
     subject = models.CharField(max_length=200)  # 질문 제목
     content = models.TextField()                # 질문 내용
     create_date = models.DateTimeField()        # 작성 일시
+    modify_date = models.DateTimeField(null = True, blank=True) # 수정 일시, null,blan -> 어떤 조건으로든 값을 비울숟있다
 
     def __str__(self):
         return self.subject
@@ -20,5 +21,6 @@ class Answer(models.Model):
     # on_delete = models.CASCADE 답변에 연결된 질문 삭제시 답변도 함께 삭제
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)    # 질문
-    content = models.TextField()        # 답변 내용
+    content = models.TextField()                # 답변 내용
     create_date = models.DateTimeField()        # 작성 일시
+    modify_date = models.DateTimeField(null=True, blank=True)   # 수정 일시

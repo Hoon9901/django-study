@@ -1,4 +1,5 @@
 from django.core import paginator
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 from django.utils import timezone
@@ -61,5 +62,26 @@ def question_create(request) :
             return redirect('pybo:index')   # 질문 화면으로 이동
     else : # GET 방식으로 질문등록화면 요청 (질문  등록)
         form = QuestionForm()
+    context = {'form' : form}
+    return render(request, 'pybo/question_form.html', context)
+
+@login_required(login_url='common:login')
+def question_modify(request, question_id):
+    """ 질문 수정 """
+    question = get_object_or_404(Question, pk=question_id)
+    if request.user != question.author:
+        messages.error(request, '수정권한이 없습니다')  # 넌 필드 오류
+        return redirect('pybo:detail', question_id = question_id)
+
+    if request.method == "POST":
+        form = QuestionForm(request.POST, instance=question)    # question을 기본값으로, form의 입력값들을 덮어써사 Form 생성
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.author = request.user
+            question.modify_date  = timezone.now() # 수정일시 저장
+            question.save()
+            return redirect('pybo:detail', question_id=question_id)
+    else:
+        form = QuestionForm(instance=question)  # 기존 저장된 질문 반영된 상태에서 수정
     context = {'form' : form}
     return render(request, 'pybo/question_form.html', context)

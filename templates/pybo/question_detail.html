@@ -2,6 +2,15 @@
 {% block content %}
 <!-- 템플릿 태그 -->
 <div class="container my-3">
+    <!-- 사용자오류 표시-->
+    {% if messages %}
+    <div class = "alert-alert-danger my-3" role = "alert">
+        {% for message in messages %}
+            <strong>{{ message.tags }}</strong>
+            <ul><li>{{ message.message }}</li></ul>
+        {% endfor %}
+    </div>
+    {% endif %}
     <!-- 제목 -->
     <h2 class="border-bottom py-2">{{ question.subject }}</h2>
     <!-- 질문 내용 -->
@@ -20,10 +29,11 @@
                     {% endif %}
                 </div>
             </div>
-            <!-- 수정 버튼 -->
+            <!-- 버튼(수정,삭제) -->
             {% if request.user == question.author%}
             <div class="my-3">
                 <a href="{% url 'pybo:question_modify' question.id %}" class="btn btn-sm btn-outline-secondary">수정</a>
+                <a href="#" class="delete btn btn-sm btn-outline-secondary" data-uri="{% url 'pybo:question_delete' question.id %}">삭제</a>
             </div>
             {% endif %}
         </div>
@@ -65,4 +75,17 @@
         <input {% if not user.is_authenticated %}disabled{% endif %} type="submit" value="답변등록" class="btn btn-primary">
     </form>
 </div>
+{% endblock %}
+{% block script %}
+<!-- 스크립트-->
+<script type = 'text/javascript'>
+$(document).ready(function(){
+    $(".delete").on('click', function(){
+        console.log("삭제");
+        if(confirm("정말로 삭제하시겠습니까?")){
+            location.href = $(this).data('uri');
+        }
+    });
+});
+</script>
 {% endblock %}

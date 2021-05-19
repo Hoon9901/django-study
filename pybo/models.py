@@ -9,6 +9,12 @@ class Question(models.Model):
     content = models.TextField()                # 질문 내용
     create_date = models.DateTimeField()        # 작성 일시
     modify_date = models.DateTimeField(null = True, blank=True) # 수정 일시, null,blan -> 어떤 조건으로든 값을 비울숟있다
+    view = models.PositiveBigIntegerField(default = 0)
+
+    @property #템플릿에 사용하기 위해
+    def update_view(self) :
+        self.view = self.view + 1
+        self.save()
 
     def __str__(self):
         return self.subject

@@ -14,6 +14,7 @@
                 <th style="width:50%">제목</th>
                 <th>글쓴이</th>
                 <th>작성일시</th>
+                <th>조회</th>
             </tr>
         </thead>
         <tbody>
@@ -36,6 +37,8 @@
                 <td>{{question.author.username}}</td>
                 <!-- 작성일시 -->
                 <td>{{ question.create_date}}</td>
+                <!-- 조회-->
+                <td>{{ question.view }}</td>
             </tr>
             {% endfor %}
             {% else %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <!-- 템플릿 태그 -->
+{{ question.update_view|default_if_none:'' }}
 <div class="container my-3">
     <!-- 사용자오류 표시-->
     {% if messages %}

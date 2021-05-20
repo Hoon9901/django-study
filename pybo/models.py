@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User # username, password
+from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE # username, password
 
 # Create your models here.
 # 질문 모델
@@ -30,3 +31,12 @@ class Answer(models.Model):
     content = models.TextField()                # 답변 내용
     create_date = models.DateTimeField()        # 작성 일시
     modify_date = models.DateTimeField(null=True, blank=True)   # 수정 일시
+
+# 댓글 모델
+class Comment(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)      # 글쓴이
+    content = models.TextField()    # 내용
+    create_date = models.DateTimeField()
+    modify_date = models.DateTimeField(null=True, blank=True)
+    question = models.ForeignKey(Question, null = True, blank= True, on_delete=CASCADE) # 댓글이 달린 질문
+    answer = models.ForeignKey(Answer, null = True, blank= True, on_delete= CASCADE)    # 댓글이 달린 답변

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <!-- 템플릿 태그 -->
-{{ question.update_view|default_if_none:'' }}
+{{ question.update_view|default_if_none:'' }}   <!-- 조회수 증가-->
 <div class="container my-3">
     <!-- 사용자오류 표시-->
     {% if messages %}
@@ -37,6 +37,30 @@
                 <a href="#" class="delete btn btn-sm btn-outline-secondary" data-uri="{% url 'pybo:question_delete' question.id %}">삭제</a>
             </div>
             {% endif %}
+            <!-- 댓글 -->
+            {% if question.comment_set.count > 0 %}
+            <div class = "border-top mt-3">
+                {% for comment in question.comment_set.all %}
+                    <div class = "comment py-2 text-muted">
+                        <span style = "white-space: pre-line">{{ comment.content}}</span>
+                        <span>
+                            - {{ comment.author }} {% if comment.modify_date == null %}({{ comment.create_date }}){% endif%}
+                            {% if comment.modify_date %}
+                            ({{comment.modify_date}} 수정됨)
+                            {% endif %}
+                        </span>
+                        {% if request.user == comment.author %}
+                        <a href ="{% url 'pybo:comment_modify_question' comment.id %}" class = "small">수정</a>
+                        <a href ="#" class = "small delete" data-uri = "{% url 'pybo:comment_delete_question' comment.id %}">삭제</a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif%}
+            <!-- 댓글 추가 -->
+            <div>
+                <a href = "{% url 'pybo:comment_create_question' question.id %}" class = "small"><small>댓글 추가 ..</small></a>
+            </div>
         </div>
     </div>
     <!-- 답변 -->
@@ -64,7 +88,33 @@
                 <a href="#" class = "delete btn btn-sm btn-outline-secondary" data-uri="{% url 'pybo:answer_delete' answer.id %}">삭제</a>
             </div>
             {% endif%}
-            
+            <!-- 답변 댓글 -->
+            {% if answer.comment_set.count > 0 %}
+            <div class = "mt-3 border-top">
+                {% for comment in answer.comment_set.all %}
+                <div class = "comment py-2 text-muted">
+                    <span style="white-space: pre-line;">{{ comment.content }}</span>
+                    <span>
+                        - {{ comment.author }} {% if comment.modify_date == null %}({{ comment.create_date }}){% endif%}
+                        {% if comment.modify_date %}
+                        ({{ comment.modify_date }} 수정됨)
+                        {% endif %}
+                    </span>
+                    <!-- 수정, 삭제 -->
+                    {% if request.user == comment.author %}
+                    <a href="{% url 'pybo:comment_modify_answer' comment.id  %}" class="small">수정</a>
+                    <a href="#" class="small delete" 
+                       data-uri="{% url 'pybo:comment_delete_answer' comment.id  %}">삭제</a>
+                    {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            <!-- 댓글 추가 -->
+            <div>
+                <a href ="{% url 'pybo:comment_create_answer' answer.id %}" class = "small"><small>댓글 추가 ..</small></a>
+            </div>
+
         </div>
     </div>
     {% endfor %}

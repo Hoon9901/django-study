@@ -11,7 +11,7 @@
         <thead>
             <tr class="text-center thead-dark">
                 <th>번호</th>
-                <th style = "width:50%">제목</th>
+                <th style = "width:40%">제목</th>
                 <th>글쓴이</th>
                 <th class="hoon-none">작성일시</th>
                 <th>추천</th>
@@ -27,8 +27,8 @@
                     {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1}}
                 </td>
                 <!-- 제목 -->
-                <td class = "text-left">
-                    <a class = "hoon-overflow" href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+                <td class = "text-left hoon-overflow ">
+                    <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
                     <!-- 답변 개수 -->
                     {% if question.answer_set.count > 0 %}
                         <span class = "text-danger small ml-2">{{ question.answer_set.count }}</span>

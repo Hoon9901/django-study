@@ -17,7 +17,7 @@ def question_create(request) :
             question.author = request.user
             question.create_date = timezone.now()
             question.save()
-            return redirect('pybo:index')   # 질문 화면으로 이동
+            return redirect('pybo:detail', question_id = question.id)   # 질문 화면으로 이동
     else : # GET 방식으로 질문등록화면 요청 (질문  등록)
         form = QuestionForm()
     context = {'form' : form}

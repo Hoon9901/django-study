@@ -2,3 +2,52 @@
     border-top : dotted 1px #ddd;
     font-size : 0.7em;
 }
+
+.hoon-overflow{
+    display: inline-block;
+    width: 500px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+@media ( max-width : 1200px){
+    .hoon-none{
+        display: none!important;
+    }
+    .hoon-overflow{
+        display: inline-block;
+        width: 350px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+@media ( max-width : 800px){
+    .hoon-none{
+        display: none!important;
+    }
+    .hoon-overflow{
+        display: inline-block;
+        width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media ( max-width : 400px){
+    body{
+        font-size : 12px;
+    }
+    .hoon-none{
+        display: none!important;
+    }
+    .hoon-overflow{
+        display: inline-block;
+        width: 130px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+}

@@ -35,3 +35,4 @@ virtualenv==20.4.4
 virtualenvwrapper-win==1.2.6
 wcwidth==0.2.5
 whitenoise==5.2.0
+Markdown==3.3.4

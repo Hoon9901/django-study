@@ -11,9 +11,9 @@
         <thead>
             <tr class="text-center thead-dark">
                 <th>번호</th>
-                <th style="width:50%">제목</th>
+                <th style = "width:50%">제목</th>
                 <th>글쓴이</th>
-                <th>작성일시</th>
+                <th class="hoon-none">작성일시</th>
                 <th>추천</th>
                 <th>조회</th>
             </tr>
@@ -28,7 +28,7 @@
                 </td>
                 <!-- 제목 -->
                 <td class = "text-left">
-                    <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+                    <a class = "hoon-overflow" href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
                     <!-- 답변 개수 -->
                     {% if question.answer_set.count > 0 %}
                         <span class = "text-danger small ml-2">{{ question.answer_set.count }}</span>
@@ -37,7 +37,7 @@
                 <!-- 글쓴이 -->
                 <td>{{question.author.username}}</td>
                 <!-- 작성일시 -->
-                <td>{{ question.create_date}}</td>
+                <td class="hoon-none">{{ question.create_date}}</td>
                 <!-- 추천 -->
                 <td>{{ question.voter.all.count}}</td>
                 <!-- 조회-->

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load pybo_filter %}
 {% block content %}
 <!-- 템플릿 태그 -->
 {{ question.update_view|default_if_none:'' }}   <!-- 조회수 증가-->
@@ -25,7 +26,7 @@
         <div class="col-11">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-text" style="white-space: pre-line;">{{ question.content }}</div>
+                    <div class="card-text">{{ question.content|mark }}</div>
                     <div class="d-flex justify-content-end">
                         <div class="badge badge-light p-2">
                             <!-- 작성자 -->
@@ -93,7 +94,7 @@
             <div class="card">
                 <div class="card-body">
                     <!-- 내용 -->
-                    <div class="card-text" style="white-space: pre-line;">{{ answer.content }}</div>
+                    <div class="card-text">{{ answer.content|mark }}</div>
                     <div class="d-flex justify-content-end">
                         <div class="badge badge-light p-2">
                             <!-- 작성자 -->

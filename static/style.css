@@ -43,7 +43,7 @@
     }
     .hoon-overflow{
         display: inline-block;
-        width: 130px;
+        width: 150px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

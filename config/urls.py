@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from pybo import views
+from pybo.views import base_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pybo.urls')),
+    path('pybo/', include('pybo.urls')),
     path('common/', include('common.urls')),
+    path('', base_view.index, name = 'index'),
 ]

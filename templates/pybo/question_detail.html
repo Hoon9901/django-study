@@ -19,8 +19,13 @@
     <div class="row my-3">
         <div class="col-1">
             <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{question.voter.count}}</div>
+            {% if user in question.voter.all %}
             <a href="#" data-uri="{% url 'pybo:vote_question' question.id  %}"
-               class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>
+               class="disabled recommend btn btn-sm btn-secondary btn-block my-1">추천함</a>
+            {% else %}
+            <a href="#" data-uri="{% url 'pybo:vote_question' question.id  %}"
+            class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>
+            {% endif %}
         </div>
         <!-- 질문 내용 -->
         <div class="col-11">
@@ -86,8 +91,13 @@
     <div class="row my-3">
         <div class = "col-1">
             <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{answer.voter.count}}</div>
+            {% if user in answer.voter.all %}
             <a href="#" data-uri="{% url 'pybo:vote_answer' answer.id  %}" 
-                class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>    
+            class="disabled recommend btn btn-sm btn-secondary btn-block my-1">추천함</a>    
+            {% else %}
+            <a href="#" data-uri="{% url 'pybo:vote_answer' answer.id  %}" 
+            class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>    
+            {% endif %}
         </div>
         <!-- 기존 -->
         <div class="col-11">

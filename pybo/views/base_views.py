@@ -8,12 +8,14 @@ def index(request):
     # 입력 파라미터, localhost:8000/pybo/?page=1
     page = request.GET.get('page', '1') # 페이지
     kw = request.GET.get('kw', '')      # 검색어
-    so = request.GET.get('so', 'recent') # 정렬 기준
+    so = request.GET.get('so', 'recent') # 정렬 기준 -> 최근순
     # 정렬 annotate 함수 -> 모델 기존필드에 함수 파라미터로 해당하는 필드를 임시 추가
-    if so == 'recommend':   # 추천 수
+    if so == 'recommend':   # 추천 순
         question_list = Question.objects.annotate(num_voter=Count('voter')).order_by('-num_voter', '-create_date')
-    elif so == 'popular':   # 답변 수
+    elif so == 'popular':   # 답변 순
         question_list = Question.objects.annotate(num_answer=Count('answer')).order_by('-num_answer', '-create_date')
+    elif so == 'view':      # 조회 순
+        question_list = Question.objects.order_by('-view', '-create_date')
     else:   #  # 작성일자, order_by에 두개 이상의 인자일씨 1번째 항목부터 우선순위, 추천수같으면 최신순으로 정렬됨
         question_list = Question.objects.order_by('-create_date')  
     

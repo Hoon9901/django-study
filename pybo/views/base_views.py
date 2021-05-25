@@ -1,15 +1,22 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from ..models import Question
-from django.db.models import Q
+from django.db.models import Q, Count
 
 def index(request):
     """ 목록 출력 """
     # 입력 파라미터, localhost:8000/pybo/?page=1
     page = request.GET.get('page', '1') # 페이지
     kw = request.GET.get('kw', '')      # 검색어
-    # 조회
-    question_list = Question.objects.order_by('-create_date')   # 작성일시의 역순 정렬
+    so = request.GET.get('so', 'recent') # 정렬 기준
+    # 정렬 annotate 함수 -> 모델 기존필드에 함수 파라미터로 해당하는 필드를 임시 추가
+    if so == 'recommend':   # 추천 수
+        question_list = Question.objects.annotate(num_voter=Count('voter')).order_by('-num_voter', '-create_date')
+    elif so == 'popular':   # 답변 수
+        question_list = Question.objects.annotate(num_answer=Count('answer')).order_by('-num_answer', '-create_date')
+    else:   #  # 작성일자, order_by에 두개 이상의 인자일씨 1번째 항목부터 우선순위, 추천수같으면 최신순으로 정렬됨
+        question_list = Question.objects.order_by('-create_date')  
+    
     if kw : # 검색어 존재할시
         question_list = question_list.filter(   # 필드 접근은 __ 사용, icontains -> 대소문자 구별안함
             Q(subject__icontains = kw) |        # 제목 
@@ -22,7 +29,7 @@ def index(request):
     page_obj = paginator.get_page(page)
     last_page = paginator.num_pages
 
-    context = {'question_list' : page_obj, 'page' : page, 'kw' : kw, 'last_page' : last_page}
+    context = {'question_list' : page_obj, 'page' : page, 'kw' : kw, 'so' : so,'last_page' : last_page}
     return render(request, 'pybo/question_list.html', context)  # 템플릿
 
 def detail(request, question_id):

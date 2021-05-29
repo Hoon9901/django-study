@@ -1,6 +1,7 @@
+from django.core import paginator
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
-from ..models import Question
+from ..models import Question, Answer
 from django.db.models import Q, Count
 
 def index(request):
@@ -37,6 +38,15 @@ def index(request):
 def detail(request, question_id):
     # 내용 출력
     # 존재하지 않는 페이지 접속시 404 출력, 기본키를 이용해 객체 반환
+    page = request.GET.get('page', '1')
+    
     question = get_object_or_404(Question, pk=question_id)
-    context = {'question' : question}
+    
+    answer_list = question.answer_set.all() # 질문을통해 답변 리스트 찾기
+    paginator = Paginator(answer_list, 10)
+    page_obj = paginator.get_page(page)
+
+    last_page = paginator.num_pages
+    answer_count = page_obj.count
+    context = {'question' : question, 'answer_list' : page_obj, 'answer_count' : answer_count, 'last_page' : last_page}
     return render(request, 'pybo/question_detail.html', context)

@@ -38,17 +38,17 @@ def index(request):
 def detail(request, question_id):
     # 내용 출력
     # 존재하지 않는 페이지 접속시 404 출력, 기본키를 이용해 객체 반환
+    question = get_object_or_404(Question, pk=question_id)
+
     page = request.GET.get('page', '1')
     so = request.GET.get('so', 'recent')
-
+    
     if so == 'recommend':
-        answer_list = Answer.objects.annotate(num_voter=Count('voter')).order_by('-num_voter', '-create_date')
+        answer_list = question.answer_set.annotate(num_voter=Count('voter')).order_by('-num_voter', 'create_date')
     elif so == 'popular':
-        answer_list = Answer.objects.annotate(num_comment=Count('comment')).order_by('-num_comment', '-create_date')
+        answer_list = question.answer_set.annotate(num_comment=Count('comment')).order_by('-num_comment', 'create_date')
     else:  # recent
-        answer_list = Answer.objects.order_by('-create_date')
-
-    question = get_object_or_404(Question, pk=question_id)
+        answer_list = question.answer_set.order_by('create_date') # 먼저 작성된 시간순서 순으로 정렬
 
     paginator = Paginator(answer_list, 10)
     page_obj = paginator.get_page(page)

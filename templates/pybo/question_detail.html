@@ -85,7 +85,16 @@
         </div>
     </div>
     <!-- 답변 -->
-    <h5 class="border-bottom my-3 py-2">{{ question.answer_set.count }}개의 답변이 있습니다.</h5>
+    <div class = "row justify-content-between my-3 border-bottom">
+        <h5 class="col-4 my-3 py-2">{{ question.answer_set.count }}개의 답변이 있습니다.</h5>
+        <div class=" my-3 col-2">
+            <select class="form-control so">
+                <option value="recent" {% if so == 'recent' %}selected{% endif %}>최신순</option>
+                <option value="recommend" {% if so == 'recommend' %}selected{% endif %}>추천순</option>
+                <option value="popular" {% if so == 'popular' %}selected{% endif %}>인기순</option>
+            </select>
+        </div>    
+    </div>
     {% if answer_list %}
     {% for answer in answer_list %}
     <a name = "answer_{{ answer.id}}"></a>
@@ -122,7 +131,7 @@
                     <div class="my-3">
                         <a href="{% url 'pybo:answer_modify' answer.id %}" class="btn btn-sm btn-outline-secondary">수정</a>
                         <a href="#" class="delete btn btn-sm btn-outline-secondary"
-                            data-uri="{% url 'pybo:answer_delete' answer.id %}">삭제</a>
+                            data-uri="{% url 'pybo:answer_delete' answer.id%}">삭제</a>
                     </div>
                     {% endif%}
                     <!-- 답변 댓글 -->
@@ -142,7 +151,7 @@
                             {% if request.user == comment.author %}
                             <a href="{% url 'pybo:comment_modify_answer' comment.id  %}" class="small">수정</a>
                             <a href="#" class="small delete"
-                                data-uri="{% url 'pybo:comment_delete_answer' comment.id  %}">삭제</a>
+                                data-uri="{% url 'pybo:comment_delete_answer' comment.id %}"></a>삭제</a>
                             {% endif %}
                         </div>
                         {% endfor %}
@@ -159,15 +168,15 @@
     </div>
     {% endfor %}
     {% endif %}
-    <!-- 답변 페이징 -->
-    <ul class = "pagination justify-content-center">
+    <!-- 페이징처리 시작 -->
+    <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->
         {% if answer_list.has_previous %}
-        <li class ='page-item'>
-            <a class ="page-link" href="?page=1">맨 처음</a>
+        <li class ="page-item">
+            <a class ="page-link" data-page="1" href="#">맨 처음</a>
         </li>
         <li class="page-item">
-            <a class="page-link" href="?page={{ answer_list.previous_page_number }}">이전</a>
+            <a class="page-link" data-page="{{answer_list.previous_page_number }}" href="#">이전</a>
         </li>
         {% else %}
         <li class ="page-item disabled">
@@ -179,35 +188,36 @@
         {% endif %}
         <!-- 페이지리스트 -->
         {% for page_number in answer_list.paginator.page_range %}
-        {% if page_number >= answer_list.number|add:-5 and page_number <= answer_list.number|add:5 %}
-            {% if page_number == answer_list.number %}
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-            </li>
-            {% else %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
-            </li>
+            {% if page_number >= answer_list.number|add:-5 and page_number <= answer_list.number|add:5 %}
+                {% if page_number == answer_list.number %}
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" data-page = "{{ page_number }}" href="#">{{ page_number }}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" data-page="{{ page_number }}" href="#">{{ page_number }}</a>
+                </li>
+                {% endif %}            
             {% endif %}
-        {% endif %}
         {% endfor %}
         <!-- 다음페이지 -->
         {% if answer_list.has_next %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ answer_list.next_page_number }}">다음</a>
+            <a class="page-link" data-page="{{ answer_list.next_page_number }}" href="#">다음</a>
         </li>
-        <li class="page-item">
-            <a class="page-link" href="?page={{ last_page }}">맨 끝</a>
+        <li class ="page-item">
+            <a class ="page-link" data-page="{{ last_page }}" href = "#">맨 끝</a>
         </li>
         {% else %}
         <li class="page-item disabled">
             <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
         </li>
-        <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">맨 끝</a>
+        <li class ="page-item disabled">
+            <a class ="page-link" tabindex="-1" aria-disabled="true" href = "#">맨 끝</a>
         </li>
         {% endif %}
     </ul>
+
     <!-- 페이징 END -->
     <form action="{% url 'pybo:answer_create' question.id %}" method="post" class="my-3">
         {% csrf_token %}
@@ -230,11 +240,28 @@
         <input {% if not user.is_authenticated %}disabled{% endif %} type="submit" value="답변등록" class="btn btn-primary">
     </form>
 </div>
+<!-- GET 방식 요청-->
+<form id="getForm" method ="get" action ="{% url 'pybo:detail' question.id %}">
+    <input type = "hidden" id = "page" name = "page" value = "{{ page }}">
+    <input type = "hidden" id = "so" name = "so" value = "{{ so }}">
+</form>
 {% endblock %}
 {% block script %}
 <!-- 스크립트-->
 <script type = 'text/javascript'>
-$(document).ready(function(){
+$(document).ready(function(){   // GET 요청
+    // 페이징 기능
+    $(".page-link").on('click', function(){
+        $("#page").val($(this).data("page"));
+        $("#getForm").submit();
+    });
+
+    $(".so").on('change', function(){
+        $("#so").val($(this).val());
+        $("#page").val(1);
+        $("#getForm").submit();
+    });
+
     $(".delete").on('click', function(){
         if(confirm("정말로 삭제하시겠습니까?")){
             location.href = $(this).data('uri');

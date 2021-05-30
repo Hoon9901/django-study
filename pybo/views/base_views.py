@@ -39,14 +39,21 @@ def detail(request, question_id):
     # 내용 출력
     # 존재하지 않는 페이지 접속시 404 출력, 기본키를 이용해 객체 반환
     page = request.GET.get('page', '1')
-    
+    so = request.GET.get('so', 'recent')
+
+    if so == 'recommend':
+        answer_list = Answer.objects.annotate(num_voter=Count('voter')).order_by('-num_voter', '-create_date')
+    elif so == 'popular':
+        answer_list = Answer.objects.annotate(num_comment=Count('comment')).order_by('-num_comment', '-create_date')
+    else:  # recent
+        answer_list = Answer.objects.order_by('-create_date')
+
     question = get_object_or_404(Question, pk=question_id)
-    
-    answer_list = question.answer_set.all() # 질문을통해 답변 리스트 찾기
+
     paginator = Paginator(answer_list, 10)
     page_obj = paginator.get_page(page)
-
     last_page = paginator.num_pages
     answer_count = page_obj.count
-    context = {'question' : question, 'answer_list' : page_obj, 'answer_count' : answer_count, 'last_page' : last_page}
+    context = {'answer_list' : page_obj, 'question' : question, 'page' : page
+                ,'so' : so, 'answer_count' : answer_count, 'last_page' : last_page}
     return render(request, 'pybo/question_detail.html', context)

@@ -102,10 +102,14 @@ def comment_modify_answer(request, comment_id):
 @login_required(login_url='common:login')
 def comment_delete_answer(request, comment_id):
     """ 답글댓글삭제 """
+    nexturl = request.GET.get('nexturl')
+
     comment = get_object_or_404(Comment, pk=comment_id)
     if request.user != comment.author:
         messages.error(request, '댓글삭제권한이 없습니다')
         return redirect('pybo:detail', question_id=comment.answer.question.id)
     else:
         comment.delete()
+    if nexturl:
+        return redirect(nexturl)
     return redirect('pybo:detail', question_id=comment.answer.question.id)

@@ -168,7 +168,7 @@
     </div>
     {% endfor %}
     {% endif %}
-    {% if question.answer_set.count >= 10 %}
+    {% if question.answer_set.count > 10 %}
     <!-- 페이징처리 시작 -->
     <ul class="pagination justify-content-center">
         <!-- 이전페이지 -->

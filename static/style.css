@@ -20,6 +20,10 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    .hoon-textsize{
+        font-size: 10px;
+    }
 }
 @media ( max-width : 800px){
     .hoon-none{

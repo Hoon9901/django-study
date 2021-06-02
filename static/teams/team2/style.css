@@ -1,0 +1,651 @@
+/*
+Todo
+1. 백그라운드 이미지 height 해결
+*/
+
+/* 폰트 */
+@font-face {
+    font-family: "text";
+    src: url(src/font/text.woff2);
+}
+
+@font-face{
+    font-family: "text_semi_bold";
+    src: url(src/font/text_semibold.woff2);
+}
+
+@font-face {
+    font-family: "text_bold";
+    src: url(src/font/text_bold.woff2);
+}
+
+/* 메뉴바 */
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    background-color: RGB(51, 51, 51);
+    text-align: center;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+}
+ul:after{
+    content:'';
+    display: block;
+    clear:both;
+}
+
+li {
+    display:inline-block;
+}
+li a {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+/* 상단 리본 */
+
+.ribonWrap{
+    margin-top: 45px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    background-color: RGB(245, 245, 247);
+    text-align: center;
+}
+
+.ribon{ 
+    font-family: text;
+    font-size: 14px;
+}
+
+.ribon .onlineshop{
+    color: rgb(85, 136, 258);
+    text-decoration: none;
+}
+
+section{
+    margin: 0;
+}
+
+/* 메인 - ipad pro */
+
+.ipad_pro{
+    background-image: url('src/img/ipad_pro.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    height: 70%;
+}
+
+.ipad_pro .title{
+    position: relative;
+    top: 9%;
+    text-align: center;
+
+    font-family: text_bold;
+    font-size: 50px;
+    color: white;
+}
+
+.ipad_pro .subtitle{
+    position: relative;
+    top: 10%;
+    text-align:center;
+
+    font-family: text;
+    font-size: 27px;
+    color: white;
+}
+
+.ipad_pro .avail{
+    position: relative;
+    top: 13%;
+    text-align:center;
+
+    font-family: text;
+    font-size: 16px;
+    color: RGB(124, 124, 129);
+}
+
+.ipad_pro .info-wrap{
+    position: relative;
+    top: 16%;
+    text-align:center;
+}
+
+.ipad_pro .more{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 22px;
+}
+
+.ipad_pro .price{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 22px;
+}
+
+/* 메인 - iPhone 12 */
+
+.iphone_12{
+    background-image: url('src/img/iphone_12.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    height: 100%;
+}
+
+.iphone_12 .title{
+    position: relative;
+    top: 9%;
+    text-align: center;
+
+    font-family: text_bold;
+    font-size: 50px;
+}
+
+.iphone_12 .subtitle{
+    position: relative;
+    top: 10%;
+    text-align:center;
+
+    font-family: text;
+    font-size: 27px;
+}
+
+.iphone_12 .avail{
+    position: relative;
+    top: 13%;
+    text-align:center;
+
+    font-family: text;
+    font-size: 17px;
+    color: RGB(124, 124, 129);
+}
+
+.iphone_12 .info-wrap{
+    position: relative;
+    top: 16%;
+    text-align:center;
+}
+
+.iphone_12 .more{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 22px;
+}
+
+.iphone_12 .price{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 22px;
+}
+
+/* 메인 iMac */
+.imac{
+    background-image: url('src/img/new_imac.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    height: 100%;
+}
+
+.imac .title{
+    position: relative;
+    top: 9%;
+    text-align: center;
+
+    font-family: text_bold;
+    font-size: 50px;
+}
+
+.imac .subtitle{
+    position: relative;
+    top: 10%;
+    text-align:center;
+
+    font-family: text;
+    font-size: 27px;
+}
+
+.imac .info-wrap{
+    position: relative;
+    top: 16%;
+    text-align:center;
+}
+
+.imac .more{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 22px;
+}
+
+.imac .price{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 22px;
+}
+
+.sub::after{
+    clear: both;
+}
+
+.sub{
+    overflow: hidden;
+}
+
+/* 서브 iphone 12 pro */
+
+.iphone_12_pro{
+    background-image: url('src/img/iphone_12_pro.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    float: left;
+    height: 60%;
+    width: 49.5%;
+} 
+.iphone_12_pro .title{
+    position: relative;
+    top: 9%;
+    text-align: center;
+
+    font-family: text_semi_bold;
+    font-size: 40;
+    color: white;
+}
+
+.iphone_12_pro .subtitle{
+    position: relative;
+    top: 10%;
+    text-align:center;
+
+    font-family: text;
+    font-size: 22px;
+    color: white;
+}
+
+.iphone_12_pro .avail{
+    position: relative;
+    top: 13%;
+    text-align:center;
+
+    font-family: text;
+    font-size: 16px;
+    color: RGB(124, 124, 129);
+}
+
+.iphone_12_pro .info-wrap{
+    position: relative;
+    top: 16%;
+    text-align:center;
+}
+
+.iphone_12_pro .more{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 20px;
+}
+
+.iphone_12_pro .price{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 20px;
+}
+
+/* 서브 watch */
+
+.watch{
+    background-image: url('src/img/apple_watch.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    float: left;
+    height: 60%;
+    width: 49.5%;
+    margin-left: 1%;
+}
+
+.watch .title{
+    position: relative;
+    top: 9%;
+    text-align: center;
+
+    font-family: text_semi_bold;
+    font-size: 40;
+    color: black;
+}
+
+.watch .color_word{
+    background: url('src/img/apple_watch_logo.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.watch .info-wrap{
+    position: relative;
+    top: 10%;
+    text-align:center;
+}
+
+.watch .more{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 20px;
+}
+
+/*서브 air tag*/
+
+.air_tag{
+    background-image: url('src/img/airtag_.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    float: left;
+    height: 60%;
+    width: 49.5%;
+} 
+.air_tag .title{
+    position: relative;
+    top: 9%;
+    text-align: center;
+
+    font-family: text_bold;
+    font-size: 40;
+    color: black;
+}
+
+.air_tag .subtitle{
+    position: relative;
+    top: 10%;
+    text-align:center;
+
+    font-family: text;
+    font-size: 22px;
+    color: black;
+}
+
+.air_tag .info-wrap{
+    position: relative;
+    top: 14%;
+    text-align:center;
+}
+
+.air_tag .more{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 20px;
+}
+
+.air_tag .price{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 20px;
+}
+
+/*서브 tradein*/
+
+.tradein{
+    background-image: url('src/img/tradein.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    float: left;
+    height: 60%;
+    width: 49.5%;
+} 
+
+.tradein .promo{
+    position: relative;
+    top: 7%;
+    text-align: center;
+
+    font-family: text_semi_bold;
+    font-size: 20;
+    color: rgb(178, 81, 49);
+}
+
+.tradein .title{
+    position: relative;
+    top: 8%;
+    text-align: center;
+
+    font-family: text_semi_bold;
+    font-size: 35;
+    color: black;
+}
+
+.tradein .subtitle{
+    position: relative;
+    top: 9%;
+    text-align:center;
+
+    font-family: text;
+    font-size: 20px;
+    color: black;
+}
+
+.tradein .info-wrap{
+    position: relative;
+    top: 12%;
+    text-align:center;
+}
+
+.tradein .more{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 20px;
+}
+
+/* 서브 macbook air*/
+.macbook_air{
+    background-image: url('src/img/macbook_air.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    float: left;
+    height: 60%;
+    width: 49.5%;
+} 
+
+.macbook_air .title{
+    position: relative;
+    top: 9%;
+    text-align: center;
+
+    font-family: text_semi_bold;
+    font-size: 40;
+    color: white;
+}
+
+.macbook_air .subtitle{
+    position: relative;
+    top: 10%;
+    text-align:center;
+
+    font-family: text;
+    font-size: 22px;
+    color: white;
+}
+
+.macbook_air .info-wrap{
+    position: relative;
+    top: 16%;
+    text-align:center;
+}
+
+.macbook_air .more{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 20px;
+}
+
+.macbook_air .price{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 20px;
+}
+
+/* 서브 arcade */
+
+.arcade{
+    position: relative;
+    float: left;
+    height: 60%;
+    width: 49.5%;
+}
+
+.arcade_logo{
+    background-image: url('src/img/arcade.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    height: 10%;
+    top: 8%;
+}
+
+.arcade .subtitle{
+    position: relative;
+    top: 10%;
+    text-align:center;
+
+    font-family: text;
+    font-size: 20px;
+    color: black;
+
+}
+
+.arcade .info-wrap{
+    position: relative;
+    top: 16%;
+    text-align:center;
+}
+
+.arcade .more{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 20px;
+}
+
+.arcade .price{
+    text-decoration: none;
+    color: rgb(66, 138, 225);
+    font-family: text;
+    font-size: 20px;
+}
+
+.arcade .arcade_img{
+    background-image: url('src/img/arcade_img.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    height: 100%;
+}
+
+/* footer 세부사항 */
+
+.footer{
+    font-family: text;
+    background-color: rgb(243, 243, 246);
+    font-size: 12px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.footer .info{
+    color: rgb(134, 134, 139);
+    width: 1200px;
+    display: inline-block;
+    text-align: left;
+}
+
+.info .link{
+    text-decoration: none;
+    color: rgb(81, 81, 84);
+}
+
+.footer .directory{
+    column-count: 5;
+    column-gap: 73px;
+    color: rgb(131,131,134);
+    line-height: 25px;
+    width: 1200px;
+    height: 320px;
+    display: inline-block;
+    text-align: left;
+}
+
+.more-info{
+    margin-top: 30px;
+    width: 1200px;
+    display: inline-block;
+    text-align: left;
+}
+
+.more-info .link{
+    text-decoration: none;
+    color: rgb(40, 85, 192);
+}
+
+.legal{
+    margin-top: 3px;
+    width: 1200px;
+    display: inline-block;
+}
+
+.legal .copyright{
+    color: rgb(134, 134, 139);
+    float: left;
+}
+
+.legal .site{
+    float: left;
+    font-size: 12px;
+    margin-left: 25px;
+}
+
+.legal .link{
+    text-decoration: none;
+    color: rgb(16, 16, 26);
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid;
+    border-color: rgb(131,131,134);
+    font-size: 12px;
+}
+
+.legal .nation{
+    float: right;
+}
+
+.corp-info{
+    width: 1200px;
+    display: inline-block;
+    font-size: 10px;
+    margin-top: 7px;
+    margin-bottom: 30px;
+    text-align: left;
+    color: rgb(134, 134, 139);
+}

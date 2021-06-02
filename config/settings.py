@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pybo.apps.PyboConfig', # 이 클래스는 APP/apps.py 파일 참고
     'common.apps.CommonConfig', # 공통 앱
+    'mega.apps.MegaConfig'  # Mega 동아리 사이트
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,91 @@
+<html><head><title>yoojin webpage</title>
+<style>p.typing-txt{display: none;}
+.typing {  
+/*       position: absolute;*/ 
+     display: inline-block; 
+      animation-name: cursor; 
+      animation-duration: 0.9s; 
+      animation-iteration-count: infinite; 
+    } 
+    @keyframes cursor{ 
+      0%{border-right: 1px solid #fff} 
+      50%{border-right: 1px solid #000} 
+      100%{border-right: 1px solid #fff} 
+    }
+
+	.google {font-family:Arial; font-size:10pt;
+			 margin-right:150px}
+	#layer1 {position:absolute; top:15px; right:30px;
+		width:65px; height:20px; background:#4085ff;
+		text-align:center; color:white;
+		border-radius:2px; padding:5px}
+	.icon {position:absolute; top:22px; right:125px}
+	.ft {font-size:10pt}
+	
+	.grem {margin-top:-70pt}
+	.border {border:1px solid #4085ff;
+			margin:0% 30% 0% 30%;<!--왼쪽 위부터 시계 방향-->
+			padding-left:80px; padding-top:5pt<!--상하/좌우-->}
+	
+	p b {margin-left:41%}
+	#layer2 {position:fixed; top:295pt;
+		width:110px; height:20px; background:#F2F2F2;
+		text-align:center; color:gray;
+		border-radius:2px; padding:8px}
+	#layer3 {position:fixed; top:295pt;
+		width:130px; height:20px; background:#F2F2F2;
+		text-align:center; color:gray;
+		border-radius:2px; padding:8px}
+	#layer2:hover {background:white; border:2px; color:black;}
+	#layer3:hover {background:white; color:black;}
+	
+	.a {font-size:10pt; color:gray; margin-left:26px; font-family:Arial;
+	margin-top:2px}
+	.ftt {text-align:right}
+</style></head>
+<body bgcolor=#ffffff topmargin=0
+	leftmargin=0>
+	<a class="nav-link" href="{% url 'mega:index' %}">HOME</a>
+<center>
+<table height=100% width=100%>
+<tr height=8%>
+	<td>
+<p><div class=google align=right>Google Resume</div>
+<img class=icon src="http://www.garylemasson.com/sites/all/themes/bootstrap_material/images/menubutton.png"
+	align=right >
+<b id=layer1 class=ft>Contact</b>
+</p>
+	</td>
+<tr>
+<tr height=83%>
+	<td>
+<center>
+<img class=grem src="https://www.garylemasson.com/sites/all/themes/bootstrap_material/images/gary_le_masson.png"
+	width=225>
+</center><br>
+<div class=border>
+<p class="typing-txt"> 타이핑될 텍스트 입니다.</p> 
+  <p class="typing"></p>
+ </div>
+<p>
+<b id=layer2 class=ft>Web Analytics</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b id=layer3 class=ft>I'm Feeling Tired</b>
+<center>
+<br><br>
+<a><font color=#0404B4>santiano.io V1.0.0 Open Source GTM Framework is Live
+</font></a>
+</center></p>
+	</td>
+</tr>
+<tr>
+	<td bgcolor="#F2F2F2">
+	<a class=a>Contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		Legal Notice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&copy; 2021 Santiano Consulting SAS
+		</a>
+	</td>
+</tr>
+</table>
+</center>
+</body>
+</html>

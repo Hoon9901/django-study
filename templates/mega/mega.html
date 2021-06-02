@@ -1,0 +1,150 @@
+{% load static %}
+<!doctype html>
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <!-- pybo CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{% static 'mega.css' %}">
+    <title>MegaBrain</title>
+</head>
+<body id = "page-top">
+    <!-- 기본 템플릿 안에 삽입될 내용 Start -->
+    {% block content %}
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">MegaBrain - May Team Project</span>
+                <span class="d-none d-lg-block">MEGA MAY TEAM</span>
+            </a>
+            <!-- 햄버거 메뉴 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <!-- 사이드 메뉴-->
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" style="font-size:20px;" href="#team">팀 소개</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team1">박성훈</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team2">박준오</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team3">최수원</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team4">이유진</a></li>
+                    <hr class = "m-1">
+                    <li class = "nav-item"><a class="nav-link" href="{% url 'index' %}">HOME</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container-fluid p-0">
+            <!-- About-->
+            <section class="resume-section" id="team">
+                <div class="resume-section-content">
+                    <h1 class="mb-0">
+                        MEGA MAY
+                        <span class="text-primary">TEAM</span>
+                    </h1>
+                    <div class="subheading mb-5">
+                        메가브레인 동아리 활동 5월 팀 프로젝트
+                        프로젝트 기간 (21.05 ~ 21. 06)
+                    </div>
+                    <!-- 소개말 -->
+                    <p class="lead mb-5">인제대학교 컴퓨터공학부 동아리 메가브레인의 월간 프로젝트, 웹 프론트뷰를 주제로, 각자 개인이 만들어보고 싶은 홈페이지 제작 하였음. 팀원으로는 박성훈, 박준오, 최수원, 이유진</p>
+                    <div class="social-icons">
+                        <a class="social-icon" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </section>
+        <hr class="m-0" />
+        <!-- Page Content-->
+            <!-- About-->
+            <section class="resume-section" id="team1">
+                <div class="resume-section-content">
+                    <h1 class="mb-0">
+                        Coder
+                        <span class="text-primary">박성훈</span>
+                    </h1>
+                    <div class="subheading mb-5">
+                        학번 : 20182621
+                    </br>(21.03 ~ ) DB LAB, MegaBrain
+                    </div>
+                    <!-- 소개말 -->
+                    <p class="lead mb-5">컴퓨터전공 특성화고 졸업함, 인제대학교의 DataBase 연구실 소속, 할 줄 아는 언어로는 C, C++, C#, Java, Python 등이 있고 Django, SDL, Node.js, React, 웹분야 프레임워크 만지는 중, 고등학교때 프로젝트 경험이 다수 있으며, 현재는 백엔드 분야를 공부중</p>
+                    <div class="social-icons">
+                        <a class="social-icon" href="https://github.com/Hooooooon"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Experience-->
+            <section class="resume-section" id="team2">
+                <div class="resume-section-content">
+                    <h1 class="mb-0">
+                        Liner
+                        <span class="text-primary">박준오</span>
+                    </h1>
+                    <div class="subheading mb-5">
+                        학번 : 2017
+                    </div>
+                    <!-- 소개말 -->
+                    <p class="lead mb-5">소개말 자유롭게 추가바람</p>
+                    <div class="social-icons">
+                        <a class="social-icon" href="{% url 'mega:team1' %}"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Education-->
+            <section class="resume-section" id="team3">
+                <div class="resume-section-content">
+                    <h1 class="mb-0">
+                        Liner
+                        <span class="text-primary">최수원</span>
+                    </h1>
+                    <div class="subheading mb-5">
+                        학번 : 추가바람
+                    </div>
+                    <!-- 소개말 -->
+                    <p class="lead mb-5">소개말 자유롭게 추가바람</p>
+                        <div class="social-icons">
+                            <a class="social-icon" href="{% url 'mega:team2' %}"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Skills-->
+            <section class="resume-section" id="team4">
+                <div class="resume-section-content">
+                    <h1 class="mb-0">
+                        Liner
+                        <span class="text-primary">이유진</span>
+                    </h1>
+                    <div class="subheading mb-5">
+                        학번 : 2021 추가바람
+                    </div>
+                    <!-- 소개말 -->
+                    <p class="lead mb-5">소개말 자유롭게 추가바람</p>
+                        <div class="social-icons">
+                            <a class="social-icon" href="{% url 'mega:team3' %}"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                </div>
+            </section>
+        </div>
+    {% endblock %}
+    <!-- 기본 템플릿 안에 삽입될 내용 End -->
+    <!-- jQuery JS -->
+    <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <!-- Java Script -->
+    <script src="js/scripts.js"></script>
+    {% block script %}
+    {% endblock %}
+</body>
+</html>
